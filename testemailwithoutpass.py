@@ -1,0 +1,20 @@
+import smtplib
+
+fromaddr = 'sending@example.com'
+toaddrs  = ['raj.k.kadiyala@gmail.com']
+msg = '''
+    From: {fromaddr}
+    To: {toaddr}
+    Subject: testin'
+    This is a test
+    .
+'''
+msg = msg.format(fromaddr =fromaddr, toaddr = toaddrs[0])
+# The actual mail send
+server = smtplib.SMTP('alt1.gmail-smtp-in.l.google.com:25')
+server.starttls()
+server.ehlo("example.com")
+server.mail(fromaddr)
+server.rcpt(toaddrs[0])
+server.data(msg)
+server.quit()
